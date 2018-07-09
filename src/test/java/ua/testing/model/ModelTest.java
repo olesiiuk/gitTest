@@ -8,8 +8,6 @@ class ModelTest {
 
     private static ExtendedModel model;
 
-
-
     @BeforeAll
     public static void init() {
         model = new ExtendedModel();
@@ -80,6 +78,16 @@ class ModelTest {
         model.isRightNumber(-17);
 
         assertEquals(expected, model.getLowerBorder());
+    }
+
+    @Test
+    public void isRightNumberBiggerThanBounds() {
+        model = new ExtendedModel();
+        int expected = model.getUpperBorder();
+
+        model.isRightNumber(2000);
+
+        assertEquals(expected, model.getUpperBorder());
     }
 
 }
