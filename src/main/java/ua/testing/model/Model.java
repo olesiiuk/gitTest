@@ -72,4 +72,8 @@ public class Model {
     protected void setSecretNumber(int secretNumber) {
         this.secretNumber = secretNumber;
     }
+
+    public List<Integer> getLog() {
+        return log;
+    }
 }
