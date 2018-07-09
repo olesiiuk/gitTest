@@ -13,18 +13,50 @@ public class Model {
 
     private int secretNumber;
 
-    private List<Integer> log;
+    private List<Integer> log = new ArrayList<>();
 
     public Model() {
         lowerBorder = 0;
         upperBorder = MAX_RANDOM;
-        log = new ArrayList<>();
         secretNumber = getRandomNumber();
     }
 
-    protected int getRandomNumber() {
-        return 0;
+    public Model(int lowerBorder, int upperBorder) {
+        this.lowerBorder = lowerBorder;
+        this.upperBorder = upperBorder;
+        secretNumber = getRandomNumber(lowerBorder, upperBorder);
     }
 
+    protected int getRandomNumber() {
+        return (int) (Math.random() * 100);
+    }
 
+    protected int getRandomNumber(int min, int max) {
+        return (int) (Math.random() * (max - min)) + min;
+    }
+
+    public boolean isRightNumber(int number) {
+        log.add(number);
+        if (number == secretNumber) {
+            return true;
+        }
+        if (number > lowerBorder && number < secretNumber) {
+            lowerBorder = number;
+        } else if (number < upperBorder && number > secretNumber){
+            upperBorder = number;
+        }
+        return false;
+    }
+
+    public int getLowerBorder() {
+        return lowerBorder;
+    }
+
+    public int getUpperBorder() {
+        return upperBorder;
+    }
+
+    protected void setSecretNumber(int secretNumber) {
+        this.secretNumber = secretNumber;
+    }
 }
