@@ -36,16 +36,29 @@ public class Model {
     }
 
     public boolean isRightNumber(int number) {
-        log.add(number);
-        if (number == secretNumber) {
-            return true;
+        if (isInBounds(number)) {
+            log.add(number);
+
+            if (number == secretNumber) {
+                return true;
+            }
+
+            shiftBounds(number);
         }
-        if (number > lowerBorder && number < secretNumber) {
+
+        return false;
+    }
+
+    private boolean isInBounds(int n) {
+        return (n >= lowerBorder) && (n < upperBorder);
+    }
+
+    private void shiftBounds(int number) {
+        if (number < secretNumber) {
             lowerBorder = number;
-        } else if (number < upperBorder && number > secretNumber){
+        } else {
             upperBorder = number;
         }
-        return false;
     }
 
     public int getLowerBorder() {
