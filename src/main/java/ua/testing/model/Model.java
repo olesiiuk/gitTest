@@ -36,16 +36,13 @@ public class Model {
     }
 
     public boolean isRightNumber(int number) {
-        if (isInBounds(number)) {
-            log.add(number);
+        log.add(number);
 
-            if (number == secretNumber) {
-                return true;
-            }
-
-            shiftBounds(number);
+        if (number == secretNumber) {
+            return true;
         }
 
+        shiftBounds(number);
         return false;
     }
 

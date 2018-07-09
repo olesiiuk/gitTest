@@ -9,6 +9,7 @@ public class View {
     private String ASK_NUMBER_FORMAT = "Enter number in bounds from %d to %d";
     private String LOG_MESSAGE = "Numbers you entered before:";
     private String SUCCESS_MESSAGE_FORMAT = "You have won! The secret number was %d";
+    private String WRONG_INPUT = "Your input was incorrect";
 
 
     public void askNumber(int from, int to) {
@@ -26,11 +27,16 @@ public class View {
             sb.append(number);
             sb.append(COMMA);
         }
+        sb.deleteCharAt(sb.length() - 1);
 
         printMessage(sb.toString());
     }
 
     public void printSuccessMessage(int number) {
         printMessage(String.format(SUCCESS_MESSAGE_FORMAT, number));
+    }
+
+    public void wrongInput() {
+        printMessage(WRONG_INPUT);
     }
 }

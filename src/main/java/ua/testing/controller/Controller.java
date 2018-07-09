@@ -23,8 +23,11 @@ public class Controller {
             askToEnterNumber();
 
             int number = getUsersNumber(scanner);
+            if (isNotInBounds(number)) {
+                view.wrongInput();
+            }
 
-            view.printLog(model.getLog());
+            printLog();
 
             if (model.isRightNumber(number)) {
                 view.printSuccessMessage(number);
@@ -45,10 +48,21 @@ public class Controller {
                 number = Integer.parseInt(input);
                 break;
             } catch (NumberFormatException ex) {
+                view.wrongInput();
                 askToEnterNumber();
             }
         }
         return number;
+    }
+
+    private void printLog() {
+        if (model.getLog().size() > 0) {
+            view.printLog(model.getLog());
+        }
+    }
+
+    private boolean isNotInBounds(int n) {
+        return !((n >= model.getLowerBorder()) && (n < model.getUpperBorder()));
     }
 
 
